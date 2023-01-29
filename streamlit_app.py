@@ -29,11 +29,6 @@ if __name__ == "__main__":
     import random
     import io
     import requests
-    st.set_page_config(
-            page_title="fish ai project",
-            page_icon="chart_with_upwards_trend",
-            layout="wide",
-        )
 
 
 
