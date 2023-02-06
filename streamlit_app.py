@@ -8,6 +8,7 @@ if __name__ == "__main__":
         layout="wide",
     )
 
+    
     import time  # to simulate a real time data, time loop
     import warnings
     warnings.filterwarnings("ignore")
@@ -22,8 +23,14 @@ if __name__ == "__main__":
     import other_func
     import main2
     import random
+    import json
     import io
     import requests
+    st.set_page_config(
+            page_title="fish ai project",
+            page_icon="chart_with_upwards_trend",
+            layout="wide",
+        )
 
 
 
@@ -92,11 +99,25 @@ if __name__ == "__main__":
         sss_data = sss_data[~sss_data["value"].isin(["--"])]
         sss_data["value"]  = sss_data["value"].astype(float).round(3)
 
-        return df_moon, main_data, sss_data, places_cord, sst_data
+
+        import ibm_boto3
+        from ibm_botocore.client import Config
+        api_key = "wvoLOAlLU8hagIV96jVJq0SEb1QoPt2bAwPcWNXMD000"
+        service_instance_id = "crn:v1:bluemix:public:cloud-object-storage:global:a/2ddbad1cb98e4bcea1c9b5b74fb11ab9:91982625-748b-4f62-a899-dc6f4d71895a::"
+        auth_endpoint = 'https://iam.bluemix.net/oidc/token'
+        service_endpoint = 'https://s3.ap.cloud-object-storage.appdomain.cloud'
+        s3 = ibm_boto3.resource('s3',
+                ibm_api_key_id=api_key,
+                ibm_service_instance_id=service_instance_id,
+                ibm_auth_endpoint=auth_endpoint,
+                config=Config(signature_version='oauth'),
+                endpoint_url=service_endpoint)
+
+        return df_moon, main_data, sss_data, places_cord, sst_data, s3
 
 
 
-    df_moon, main_data, sss_data, places_cord, sst_data = open_dataframes()
+    df_moon, main_data, sss_data, places_cord, sst_data, s3 = open_dataframes()
 
 
 
@@ -206,3 +227,15 @@ if __name__ == "__main__":
 
     if st.button('cognos'):
         webbrowser.open_new_tab("https://dataplatform.cloud.ibm.com/dashboards/fd43df0f-be94-460b-98bd-cc2f1b4b60a0/view/7303f57b1d83399445c5f6e4079125042f632d0be0bbd706d1d37b490a687097f06e4792c82b1a5988470363a7e51450cf")
+
+
+    data = {"date":int(date1), "location": str(place)}
+    print(data)
+    with open("parameters.json", "w") as jsonFile:
+        json.dump(data, jsonFile)
+
+
+
+    data = open("parameters.json", 'rb')
+
+    s3.Bucket('imagesforintitodash').put_object(Key="parameters.json", Body=data)
