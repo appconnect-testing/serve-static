@@ -224,8 +224,7 @@ if __name__ == "__main__":
         webbrowser.open_new_tab("https://dataplatform.cloud.ibm.com/dashboards/fd43df0f-be94-460b-98bd-cc2f1b4b60a0/view/7303f57b1d83399445c5f6e4079125042f632d0be0bbd706d1d37b490a687097f06e4792c82b1a5988470363a7e51450cf")
 
 
-    data = {"date":int(date1), "location": str(place)}
-    print(data)
+    data = {"date":start_time.strftime("%Y%m%d%H%M%S"), "location": str(place)}
     with open("parameters.json", "w") as jsonFile:
         json.dump(data, jsonFile)
 
