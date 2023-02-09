@@ -21,7 +21,7 @@ def generate_form(relevant_parameters, translations):
         if st.button("remove field"):
             with open("a_number.txt", "r") as r:
                 n_fields = int(r.read())
-            with open("/a_number.txt", "w") as w:
+            with open("a_number.txt", "w") as w:
                 w.write(str(n_fields - 1))
     with st.form("inference_form"):
 
