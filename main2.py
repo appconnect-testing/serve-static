@@ -151,7 +151,7 @@ def construct_valves(salt, temperatur, main_data):
         create_pie_chart2(), row=2, col=2
     )
 
-    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_traces(textposition='outside', textinfo='percent+label')
 
 
     fig.add_trace(
