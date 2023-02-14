@@ -128,7 +128,7 @@ if __name__ == "__main__":
     from datetime import datetime
 
     start_time = st.slider(
-        "When do you start?",
+        "up to what date do you wish to view data from",
         value=(datetime(2021, 1, 1)),
         min_value=datetime(2021, 1, 1),
         max_value=datetime(2021, 12, 30),
@@ -221,7 +221,7 @@ if __name__ == "__main__":
     import webbrowser
 
     if st.button('cognos'):
-        webbrowser.open_new_tab("https://dataplatform.cloud.ibm.com/dashboards/fd43df0f-be94-460b-98bd-cc2f1b4b60a0/view/7303f57b1d83399445c5f6e4079125042f632d0be0bbd706d1d37b490a687097f06e4792c82b1a5988470363a7e51450cf")
+        webbrowser.open_new_tab("https://eu-de.dataplatform.cloud.ibm.com/dashboards/36f9fe33-261c-479a-9d49-3ff1eaab3aa2/view/5306da372ca328e277febde407cf2c547462270ebabb8b0782867b495c667897a8601bc7c8264e08d2445060faea1559c1")
 
 
     data = {"date":start_time.strftime("%Y%m%d%H%M%S"), "location": str(place)}
