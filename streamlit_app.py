@@ -77,10 +77,10 @@ if __name__ == "__main__":
         #sss_data = pd.read_csv("/Users/audunbutenschon/Documents/intito materiale/sss_prototype_data.csv")
         #sst_data = pd.read_csv("/Users/audunbutenschon/Documents/intito materiale/sst_prototype_data.csv")
 
-        df_moon = pd.read_csv(file_by_url("https://imagesforintitodash.s3.ap.cloud-object-storage.appdomain.cloud/moon_data.csv"))
-        main_data = pd.read_csv(file_by_url("https://high-speed-testing-for-intito.s3.eu-de.cloud-object-storage.appdomain.cloud/fangstdata_full.csv"))
-        sss_data = pd.read_csv(file_by_url("https://imagesforintitodash.s3.ap.cloud-object-storage.appdomain.cloud/sss_prototype_data.csv"))
-        sst_data = pd.read_csv(file_by_url("https://imagesforintitodash.s3.ap.cloud-object-storage.appdomain.cloud/sst_prototype_data.csv"))
+        df_moon = pd.read_csv(file_by_url("https://data-for-stuff.s3.us-east.cloud-object-storage.appdomain.cloud/moon_data.csv"))
+        main_data = pd.read_csv(file_by_url("https://data-for-stuff.s3.us-east.cloud-object-storage.appdomain.cloud/fangstdata_full%20(2).csv"))
+        sss_data = pd.read_csv(file_by_url("https://data-for-stuff.s3.us-east.cloud-object-storage.appdomain.cloud/sss_prototype_data.csv"))
+        sst_data = pd.read_csv(file_by_url("https://data-for-stuff.s3.us-east.cloud-object-storage.appdomain.cloud/sst_prototype_data.csv"))
 
         places_cord = main_data[["Lon (hovedområde)", "Lat (hovedområde)", "Hovedområde", "Siste fangstdato"]].drop_duplicates(subset=["Hovedområde", "Siste fangstdato"])[:-2].dropna(subset=["Lon (hovedområde)", "Lat (hovedområde)"])
         places_cord["kordinater"] = "(" + places_cord["Lat (hovedområde)"].str.replace(",", ".").astype(float).round(0).astype(str) + ", " + places_cord["Lon (hovedområde)"].str.replace(",", ".").astype(float).round(0).astype(str) + ")"
