@@ -108,17 +108,18 @@ def construct_valves(salt, temperatur, main_data):
     from plotly.subplots import make_subplots
     import plotly.graph_objects as go
     def create_pie_chart():
-        import plotly.graph_objects as go
         df_mid = pd.DataFrame(main_data["Salgslag"].value_counts()).reset_index()
+        dectionary = {'Norges Sildesalgslag': 'Norwegian herring salesorg', 'Vest-Norges Fiskesalslag': 'Western norway salesorg.', 'Fiskehav SA': 'Fishing sea SA','Sunnmøre og Romsdal Fiskesalslag': 'Sunnmøre and Romsdal salesorg.', 'Norges Råfisklag': 'Norwegian raw fish org.'}
+        df_mid["index"] = df_mid["index"].replace(dectionary)
         labels = list(df_mid["index"])
         values = list(df_mid["Salgslag"])
 
-        return go.Pie(labels=labels, values=values, title = {'text': "Salgslag", 'font': {'size': 14}})
+        return go.Pie(labels=labels, values=values, title = {'text': "Sales organization", 'font': {'size': 14}})
     def create_pie_chart2():
         df_mid = pd.DataFrame(main_data["Redskap - hovedgruppe"].value_counts()).reset_index()
         labels = list(df_mid["index"])
         values = list(df_mid["Redskap - hovedgruppe"])
-        return  go.Pie(labels=labels, values=values, title = {'text': "Redskap", 'font': {'size': 14}})
+        return  go.Pie(labels=labels, values=values, title = {'text': "tool", 'font': {'size': 14}})
 
 
     def salt_innhold(salt):
