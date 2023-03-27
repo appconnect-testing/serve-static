@@ -57,7 +57,8 @@ def generate_image(main_data):
         paste_image_list[i].paste(create_bubble(int(100*values[i]/tot_len)), (int(paste_image_list[i].size[0]/2 -100),int(paste_image_list[i].size[1]/2-100)))
         #draw = ImageDraw.Draw(paste_image_list[i])
         #draw.text((paste_image_list[i].size[0]/2, paste_image_list[i].size[1]-100), "sample",(0,0,255),font=font)
-        paste_image_list[i].paste(create_bar(paste_image_list[i].size[0], addresses[i].replace(".png", "")), (0,int(paste_image_list[i].size[1]-100)))
+        dectionary = {'taskekrabbe': 'marsupial crab', 'lyr': 'lyre', 'berggylt': 'ballan wrasse', 'sei': 'pollock', 'smørflyndre': 'righteye flounder', 'flekksteinbit': 'anarhichas minor', 'breiflabb': 'angler fish', 'dypvannsreke': 'deep water shrimp', 'rødspette': 'plaice', 'bergnebb': 'goldsinny wrasse', 'annen skate og rokke': 'other batoidea', 'sjøkreps': 'crayfish', 'brosme': 'cusk', 'kongekrabbe': 'king crab', 'gråsteinbit': 'atlantic wolffish', 'hyse': 'haddock', 'lange': 'common ling', 'lysing': 'european hake', 'sild': 'herring', 'grønngylt': 'corkwing wrasse', 'kveite': 'halibut', 'blåkveite': 'blue halibut', 'torsk': 'cod', 'makrell': 'mackerel'}	
+        paste_image_list[i].paste(create_bar(paste_image_list[i].size[0], dectionary[addresses[i].replace(".png", "").lower().strip()]), (0,int(paste_image_list[i].size[1]-100)))
 
 
 
