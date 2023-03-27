@@ -49,7 +49,9 @@ def generate_form(relevant_parameters, translations):
             all_cols = st.columns(7)
             with all_cols[2]:
                 #st.text(response["predictions"][0]["values"][0][0])
-                st.pyplot(generate_text(response["predictions"][0]["values"][0][0]))
+                metode = {'Not': 'Seine fishing', 'Trål': 'trawl', 'Konvensjonelle': 'conventional methods', 'Annet': 'other'}
+                text_val = metode[response["predictions"][0]["values"][0][0]]
+                st.pyplot(generate_text(text_val))
             with all_cols[3]:
                 fig = generate_certainity_plot(np.array(response["predictions"][0]["values"][0][1]).sum())
                 st.pyplot(fig)
