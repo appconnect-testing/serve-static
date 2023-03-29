@@ -23,10 +23,6 @@ st.set_page_config(
     )
 
 
-
-
-
-
 def find_fisker():
     fisker = {}
     for i in list(dict(main_data["Art FAO"].value_counts()))[:15]:
