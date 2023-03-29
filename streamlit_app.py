@@ -1,6 +1,5 @@
 import streamlit as st
 
-
 if __name__ == "__main__":
     st.set_page_config(
         page_title="fish ai project",
@@ -8,8 +7,6 @@ if __name__ == "__main__":
         layout="wide",
     )
 
-    
-    import time  # to simulate a real time data, time loop
     import warnings
     warnings.filterwarnings("ignore")
     import numpy as np  # np mean, np random
