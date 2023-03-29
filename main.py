@@ -1,6 +1,4 @@
 
-
-import time  # to simulate a real time data, time loop
 import warnings
 warnings.filterwarnings("ignore")
 import numpy as np  # np mean, np random
