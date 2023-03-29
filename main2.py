@@ -21,7 +21,7 @@ def generate_form(relevant_parameters, translations):
         if st.button("remove field"):
             with open("a_number.txt", "r") as r:
                 n_fields = int(r.read())
-            with open("/a_number.txt", "w") as w:
+            with open("a_number.txt", "w") as w:
                 w.write(str(n_fields - 1))
     with st.form("inference_form"):
 
@@ -49,7 +49,9 @@ def generate_form(relevant_parameters, translations):
             all_cols = st.columns(7)
             with all_cols[2]:
                 #st.text(response["predictions"][0]["values"][0][0])
-                st.pyplot(generate_text(response["predictions"][0]["values"][0][0]))
+                metode = {'Not': 'Seine fishing', 'Trål': 'trawl', 'Konvensjonelle': 'conventional methods', 'Annet': 'other'}
+                text_val = metode[response["predictions"][0]["values"][0][0]]
+                st.pyplot(generate_text(text_val))
             with all_cols[3]:
                 fig = generate_certainity_plot(np.array(response["predictions"][0]["values"][0][1]).sum())
                 st.pyplot(fig)
@@ -108,17 +110,18 @@ def construct_valves(salt, temperatur, main_data):
     from plotly.subplots import make_subplots
     import plotly.graph_objects as go
     def create_pie_chart():
-        import plotly.graph_objects as go
         df_mid = pd.DataFrame(main_data["Salgslag"].value_counts()).reset_index()
+        dectionary = {'Norges Sildesalgslag': 'Norwegian herring salesorg', 'Vest-Norges Fiskesalslag': 'Western norway salesorg.', 'Fiskehav SA': 'Fishing sea SA','Sunnmøre og Romsdal Fiskesalslag': 'Sunnmøre and Romsdal salesorg.', 'Norges Råfisklag': 'Norwegian raw fish org.'}
+        df_mid["index"] = df_mid["index"].replace(dectionary)
         labels = list(df_mid["index"])
         values = list(df_mid["Salgslag"])
 
-        return go.Pie(labels=labels, values=values, title = {'text': "Salgslag", 'font': {'size': 14}})
+        return go.Pie(labels=labels, values=values, title = {'text': "Sales organization", 'font': {'size': 14}})
     def create_pie_chart2():
         df_mid = pd.DataFrame(main_data["Redskap - hovedgruppe"].value_counts()).reset_index()
         labels = list(df_mid["index"])
         values = list(df_mid["Redskap - hovedgruppe"])
-        return  go.Pie(labels=labels, values=values, title = {'text': "Redskap", 'font': {'size': 14}})
+        return  go.Pie(labels=labels, values=values, title = {'text': "tool", 'font': {'size': 14}})
 
 
     def salt_innhold(salt):
@@ -151,7 +154,7 @@ def construct_valves(salt, temperatur, main_data):
         create_pie_chart2(), row=2, col=2
     )
 
-    fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig.update_traces(textposition='outside', textinfo='percent+label')
 
 
     fig.add_trace(
