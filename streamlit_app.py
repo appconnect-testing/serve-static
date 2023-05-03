@@ -25,6 +25,15 @@ if __name__ == "__main__":
     import requests
 
 
+    import os
+
+    from dotenv import load_dotenv
+
+    load_dotenv()
+
+    
+
+
 
 
 
@@ -94,10 +103,10 @@ if __name__ == "__main__":
 
         import ibm_boto3
         from ibm_botocore.client import Config
-        api_key = "wvoLOAlLU8hagIV96jVJq0SEb1QoPt2bAwPcWNXMD000"
-        service_instance_id = "crn:v1:bluemix:public:cloud-object-storage:global:a/2ddbad1cb98e4bcea1c9b5b74fb11ab9:91982625-748b-4f62-a899-dc6f4d71895a::"
-        auth_endpoint = 'https://iam.bluemix.net/oidc/token'
-        service_endpoint = 'https://s3.ap.cloud-object-storage.appdomain.cloud'
+        api_key = os.getenv("api_key")
+        service_instance_id = os.getenv("service_instance_id")
+        auth_endpoint = os.getenv("auth_endpoint")
+        service_endpoint = os.getenv("service_endpoint")
         s3 = ibm_boto3.resource('s3',
                 ibm_api_key_id=api_key,
                 ibm_service_instance_id=service_instance_id,
