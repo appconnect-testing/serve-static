@@ -1,7 +1,6 @@
 import streamlit as st
 import json
 import numpy as np
-import plotly.graph_objects as go
 import pandas as pd
 def generate_form(relevant_parameters, translations):
     eng_relevant_parameters = [translations[i] for i in relevant_parameters]
@@ -119,6 +118,8 @@ def construct_valves(salt, temperatur, main_data):
         return go.Pie(labels=labels, values=values, title = {'text': "Sales organization", 'font': {'size': 14}})
     def create_pie_chart2():
         df_mid = pd.DataFrame(main_data["Redskap - hovedgruppe"].value_counts()).reset_index()
+        dectionary = {'Not': 'Seine fishing', 'Trål': 'trawl', 'Konvensjonelle': 'conventional methods', 'Annet': 'other'}
+        df_mid["index"] = df_mid["index"].replace(dectionary)
         labels = list(df_mid["index"])
         values = list(df_mid["Redskap - hovedgruppe"])
         return  go.Pie(labels=labels, values=values, title = {'text': "tool", 'font': {'size': 14}})
